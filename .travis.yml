@@ -1,0 +1,27 @@
+language: minimal
+sudo: false
+env:
+  global:
+  - COMMIT=${TRAVIS_COMMIT::8}
+script:
+- docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+- export REPO=gicmadev/pof.pm
+- export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH
+  ; fi`
+- docker build -f Dockerfile -t $REPO:$COMMIT .
+- docker tag $REPO:$COMMIT $REPO:$TAG
+- docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
+- docker push $REPO
+before_deploy:
+- eval "$(ssh-agent -s)"
+- openssl aes-256-cbc -K $encrypted_9fe265222b33_key -iv $encrypted_9fe265222b33_iv
+  -in .deploy_key.enc -out /tmp/deploy_key -d
+- chmod 600 /tmp/deploy_key
+- ssh-add /tmp/deploy_key
+- ssh-keyscan "$SERVER" >> ~/.ssh/known_hosts
+deploy:
+- provider: script
+  script: "./deploy.sh"
+  on:
+    branch: master
+before_install:

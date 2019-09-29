@@ -1,0 +1,46 @@
+version: "3.6"
+services:
+  app:
+    image: "pof.pm"
+    build:
+        context: .
+        target: runner
+    volumes:
+      - .:/app
+    tmpfs:
+      - /app/tmp
+    networks:
+      - traefik
+      - default
+    depends_on:
+      - db
+    env_file: ./.env
+    labels:
+      traefik.port: 3000
+      traefik.frontend.rule: "Host:pof.pm.test"
+
+  db:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - default
+    env_file: ./.env
+    labels:
+      traefik.enable: false
+
+  pma:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - db
+    networks:
+      - traefik
+      - default
+    labels:
+      traefik.frontend.rule: "Host:pma.pof.pm.test"
+    environment:
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+
+networks:
+  traefik:
+    external: true
