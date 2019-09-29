@@ -9,7 +9,7 @@ PofPm::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_files = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -66,4 +66,6 @@ PofPm::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.eager_load = true
+
+  config.log_level = :info
 end

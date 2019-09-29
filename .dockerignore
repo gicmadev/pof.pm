@@ -1,0 +1,13 @@
+*
+!Gemfile*
+!app/
+!bin/
+!config/
+!config.ru
+!db/
+!lib/
+!public/
+
+public/assets
+
+!Rakefile
