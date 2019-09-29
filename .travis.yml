@@ -3,6 +3,9 @@ sudo: false
 env:
   global:
   - COMMIT=${TRAVIS_COMMIT::8}
+  - secure: BSbN8AnMWFdmjSNMe16twV0TJ6gjWGU3mKwsiexQf5XOJGHBNou+ImwyNRmD+/BITrwjcQk1NNFUgevqDl83nTLHZ23bS7akevQ11FGIG02MJ7FYrc39EfO2gBmJpq8K0ONH2BqsKG6itIYyu1bwklbWPdHlx+mFl8JZh7cTkZt2nu8ZOuBkkKk95mN91oaB3OwCS6sQvjDZbP83JKbVH45QFalXLwXIJYLvG/7L8L3gxo3tZQG6jbb+z12ap2crG+RibNwLp6WaHntLCsnl3ZjnlXa9WW37v41lPhulpmbfrPzsVQ0bP1eKcW4nNc9Sd6hTAEI30RhZfl1aLSwZ/yLOy1jFt03DCkUv8gMZ/YlgIVb96h3m4JIK6SjjECcBPtxVlxo828JirNt6wJERqSR+BM3YtSgeBzqO8PAilZtAdh9/z09C1H74WJYKkbvBZN4pSL1DTESFKFpByS1mlztABrQ8cNnCIrryBit+cD1h7mh1UXuy4Fjdlimav0Z9Ix2UHmXnFNKjDhc/Jv8w4oz7H6uYLlyQ8A+8LcOQ7LOpkp5//XFg4hA4Gznrd/qsgFhizxKuXVUmvLIYP1CCY6kWuBnlR7Hk71cKpEwAEB6GgpnMzjAvNxZOueYcVqRvI53/u9VDBBgnYuMkMoZmEI0T+IhfF3xpQhNyShccxOg=
+  - secure: dXucHYzK+LTqVrbwY8SZofG+0HHIP2TWddvzKzxHFmbc9bIrKjw8r2Zb5X8cQdY/I/OJZEkUm+Ej+xKmeR7AA0LnljXUdZBCS4k9N7rnA/bUl63WRpwOwW8pL7SGvWFbLrWfliwljKW3YeMj536VyR8MUBEXMV3CJopIOtGYG/wxzZKwQ/qfwdGAPSLCrdyQX74Uu8UFGxix+UlVkyZpVQhMGF1A8mnavgLfti47ElzxxonAW9VPnoSkR8V9MF0cfhkxu6S529ttFYSXBuQ0E5YQaDcplIIbRqz66qaRbrcp1xOCQCDw3RwKJVL8Fgf7C/cRoe0xjSuiQfiFXjvAtNu+Qs3vbOqBYVzHsvvAalz2e6vP/Vkpvj5AyFnboFt+UOsAHCa+0uNgqZZXBdCkd5ep4RBQjwtWB3N+0gAvlUSmjDkY3Q9D7ARbn25aRNvVNJqC6QO4o8yn4rdPs416h6clHc605OyjNqDQdSqZXElChIh0ciAvTpdZEW2fvz9K8dKk00JdX6CkGbZkQ78OUPIdni9Jjw/RzC8Cmb9jSchlMFgjYBcmok70OdfrVqxbKSSEJvhcEyjBQ5qA2urQriGBTBO1gQiASxxLZGgF0tqZwsajpfro7EePBYPDegI8yXNkypLZGnKYBlFsegREwVamznutxsglT5EEzR/HNtI=
+  - secure: VkTrYM/eg8joBMZvMlggNY+523cw010YtHcuwfp38+9lZsbIK9W5mBI0AQqeYLs6Lu+sQDI0YO6PrY7aMLSIa1lCs80N8P6V2f5gYPWBhv8fa1i/jLnrX/OxKzAgrvo0Mp8wtNxjgInVWeQiG9KE4wx4FoVhbsmnWKevMS6M82MECPnLlYlYH4GOBJv7ITUGw3gbt4Gsz0xi5qvwNVji9HBlE4K/DEIA3zK9qmaE9hMgUSOaRWe/LATG27v4cbvx6JA4OgCYCDtG22cGV5nBFx0KF2v+BbiueQyd6olcTD56WBY9LhzaonSEwx+kEnBQYIY7D6Gosen9Q2CDJzIKH0aPKwBxAo9SkMHJTn5ccEABcuu5k/WmMNUUGEdJuJi30JfR8DPHmMz5Gj8mgwjSCUuAYf7x3BNjoV/Jty0Hp7/7L84AEg8wwXQWp6T2Hs+dwMQ3FsihTFKTJGKYRYlqJuY0RZRn0a8MoVfUN7E/3T9O7h4pgCeAalfY91JEXs7Lpg6ud7xEO4jm0xFPXZcQWWz3YLO9eWgVlgBHyuTo76ZAWYa9hKF+u6rVuQUniMptSwKo4eacIN7/0BfJ/JRAmtrf5pg6s3xznxxvLV6vYehw2xzR3wkQheBRvbpkNhRSyveeheb6J/ZMZ+8f0NSP6Ey6cfgiEvxvUIRohp81ck4=
 script:
 - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 - export REPO=gicmadev/pof.pm
@@ -14,7 +17,7 @@ script:
 - docker push $REPO
 before_deploy:
 - eval "$(ssh-agent -s)"
-- openssl aes-256-cbc -K $encrypted_9fe265222b33_key -iv $encrypted_9fe265222b33_iv
+- openssl aes-256-cbc -K $encrypted_3e35467c1c54_key -iv $encrypted_3e35467c1c54_iv
   -in .deploy_key.enc -out /tmp/deploy_key -d
 - chmod 600 /tmp/deploy_key
 - ssh-add /tmp/deploy_key
@@ -24,4 +27,3 @@ deploy:
   script: "./deploy.sh"
   on:
     branch: master
-before_install:
