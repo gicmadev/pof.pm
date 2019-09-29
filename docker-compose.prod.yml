@@ -13,7 +13,8 @@ services:
     env_file: ./.env
     labels:
       traefik.enable: true
-      traefik.frontend.rule: "Host:pof.pm"
+      traefik.port: 3000
+      traefik.frontend.rule: "Host:pof.pm,www.pof.pm"
 
   db:
     image: mysql:8
