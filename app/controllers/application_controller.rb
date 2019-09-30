@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  before_filter :check_password
+  before_filter :check_password, :except => [:home]
 
   def home
   end
