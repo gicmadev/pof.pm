@@ -7,4 +7,7 @@ module ApplicationHelper
     shortened_url_index_url(*args)
   end
     
+  def title(page_title)
+    content_for(:title) { page_title }
+  end
 end

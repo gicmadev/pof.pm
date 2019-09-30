@@ -11,7 +11,7 @@ PofPm::Application.routes.draw do
 
   get "/:id" => "shortened_url#follow"
   
-  root :to => proc { |env| [ 303, {"Location" => "http://pofmagicfingers.fr/"}, [] ] }
+  root :to => "application#home"
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

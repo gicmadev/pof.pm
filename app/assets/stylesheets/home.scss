@@ -1,0 +1,87 @@
+.controller-application.action-home {
+  &, & body {
+    background: #333;
+    color: #EFEFEF;
+    font-size: 16px;
+  }
+
+  .container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+
+    align-content: center;
+    align-content: space-evenly;
+
+    justify-content: center;
+    justify-content: space-evenly;
+
+    .item {
+      position: relative;
+      padding: 1vw;
+      width: 20vw;
+      height: 20vw;
+      max-width: 1000px;
+      max-height: 1000px;
+      word-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
+
+      display: flex;
+      align-items: flex-end;
+      text-shadow: 2px 2px 3px rgb(0, 0, 0);
+
+      line-height: 1.3rem;
+
+      text-decoration: none;
+
+      &, &:hover, &:active, &:visited {
+        background: none;
+        color: #EFEFEF;
+      } 
+
+      & img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.3;
+        transition: opacity 0.1s ease-in;
+        max-width: 100%;
+        z-index: -1;
+      }
+
+      &:hover img {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 900px) {
+      font-size: 0.6rem;
+      line-height: 1rem;
+    }
+
+    @media (max-width: 900px) and (orientation: landscape) {
+      .item {
+        width: 30vh;
+        padding: 1vh;
+        height: 30vh;
+      }
+    }
+
+    @media (max-width: 900px) and (orientation: portrait) {
+      .item {
+        width: 30vw;
+        height: 30vw;
+      }
+    }
+  }
+}
